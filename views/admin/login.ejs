@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área da artista · Pinturinha Mágica</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎨</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body class="auth-body">
+    <div class="auth-wrap">
+        <div class="auth-card">
+            <aside class="auth-side">
+                <span class="auth-emoji">🎨</span>
+                <h2>Pinturinha Mágica</h2>
+                <p>Gerencie pedidos, agenda, galeria e mensagens em um só lugar.</p>
+                <a href="/" class="auth-site-link">← Voltar ao site</a>
+            </aside>
+
+            <div class="auth-form">
+                <span class="auth-eyebrow">Acesso restrito</span>
+                <h1>Área da artista</h1>
+                <p class="auth-sub">Entre com seu usuário e senha para abrir o painel.</p>
+
+                <% if (error) { %>
+                    <div class="admin-alert admin-alert--error" role="alert">
+                        <span>⚠️</span>
+                        <p><%= error %></p>
+                    </div>
+                <% } %>
+
+                <form action="/admin/login" method="POST" class="admin-form">
+                    <div class="admin-field">
+                        <label for="username">Usuário</label>
+                        <input type="text" id="username" name="username" value="<%= username || '' %>" autocomplete="username" required autofocus>
+                    </div>
+                    <div class="admin-field">
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" name="password" autocomplete="current-password" required>
+                    </div>
+                    <button type="submit" class="admin-btn admin-btn--primary admin-btn--block">Entrar no painel</button>
+                </form>
+
+                <p class="auth-hint">Esqueceu a senha? Redefina pelo arquivo <code>.env</code> ou pelo banco de dados.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

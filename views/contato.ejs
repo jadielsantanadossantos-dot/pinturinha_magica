@@ -1,0 +1,108 @@
+<%- include('partials/head', { pageTitle: 'Contato', pageDescription: 'Fale com a Pinturinha Mágica por WhatsApp, e-mail ou pelo formulário de contato.' }) %>
+<body class="page-contact">
+<%- include('partials/header') %>
+
+<main>
+    <section class="page-hero">
+        <div class="container">
+            <span class="eyebrow"><span class="dot"></span> Fale com a gente</span>
+            <h1>Vamos conversar?</h1>
+            <p>Tire dúvidas, peça fotos de trabalhos ou combine os detalhes da sua festa. Respondemos o mais rápido possível.</p>
+        </div>
+    </section>
+
+    <section class="section section--tight">
+        <div class="container contact-grid">
+            <aside class="contact-side">
+                <div class="contact-card">
+                    <span class="contact-icon contact-icon--whatsapp">💬</span>
+                    <div>
+                        <h3>WhatsApp</h3>
+                        <p><%= waDisplay || 'Cadastre o número no painel' %></p>
+                        <% if (waHref) { %>
+                            <a href="<%= waHref %>?text=<%= encodeURIComponent('Olá! Gostaria de saber mais sobre a pintura artística infantil.') %>" class="link-arrow" target="_blank" rel="noopener">Abrir conversa</a>
+                        <% } %>
+                    </div>
+                </div>
+
+                <% if (site.email) { %>
+                    <div class="contact-card">
+                        <span class="contact-icon contact-icon--email">✉️</span>
+                        <div>
+                            <h3>E-mail</h3>
+                            <p><%= site.email %></p>
+                            <a href="mailto:<%= site.email %>" class="link-arrow">Enviar e-mail</a>
+                        </div>
+                    </div>
+                <% } %>
+
+                <% if (site.instagram) { %>
+                    <div class="contact-card">
+                        <span class="contact-icon contact-icon--instagram">📷</span>
+                        <div>
+                            <h3>Instagram</h3>
+                            <p>@<%= site.instagram %></p>
+                            <a href="https://instagram.com/<%= site.instagram %>" class="link-arrow" target="_blank" rel="noopener">Ver perfil</a>
+                        </div>
+                    </div>
+                <% } %>
+
+                <div class="contact-card contact-card--note">
+                    <span class="contact-icon">⏰</span>
+                    <div>
+                        <h3>Atendimento</h3>
+                        <p>Respondemos em horário comercial. Para festas no fim de semana, fale com antecedência.</p>
+                    </div>
+                </div>
+            </aside>
+
+            <div class="form-card reveal">
+                <div class="form-card-head">
+                    <h2>Envie uma mensagem</h2>
+                    <p>Preencha os campos e retornamos pelo contato informado.</p>
+                </div>
+
+                <% if (message) { %>
+                    <div class="alert alert--success" role="status">
+                        <span>✅</span>
+                        <p><%= message %></p>
+                    </div>
+                <% } %>
+
+                <% if (errors && errors.length) { %>
+                    <div class="alert alert--error" role="alert">
+                        <span>⚠️</span>
+                        <ul>
+                            <% errors.forEach(error => { %><li><%= error %></li><% }) %>
+                        </ul>
+                    </div>
+                <% } %>
+
+                <form action="/contato" method="POST" class="form">
+                    <div class="form-row">
+                        <div class="field">
+                            <label for="name">Seu nome</label>
+                            <input type="text" id="name" name="name" value="<%= form.name || '' %>" placeholder="Como podemos te chamar?" required maxlength="120">
+                        </div>
+                        <div class="field">
+                            <label for="contact">E-mail ou telefone</label>
+                            <input type="text" id="contact" name="contact" value="<%= form.contact || '' %>" placeholder="(83) 99999-9999" required maxlength="120">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="message">Mensagem</label>
+                        <textarea id="message" name="message" rows="6" placeholder="Conte sobre a festa, a data e o que você procura..." required maxlength="2000"><%= form.message || '' %></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block btn-lg">Enviar mensagem</button>
+                    <p class="form-hint">Seus dados são usados apenas para responder a este contato.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+<%- include('partials/footer') %>
+</body>
+</html>

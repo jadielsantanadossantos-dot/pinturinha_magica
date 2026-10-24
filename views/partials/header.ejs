@@ -1,0 +1,34 @@
+<% const nav = [
+    { href: '/', label: 'Início' },
+    { href: '/sobre', label: 'Sobre' },
+    { href: '/galeria', label: 'Galeria' },
+    { href: '/orcamento', label: 'Orçamento' },
+    { href: '/contato', label: 'Contato' }
+]; %>
+<header class="site-header">
+    <div class="container header-inner">
+        <a class="brand" href="/" aria-label="Pinturinha Mágica — página inicial">
+            <span class="brand-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3a9 9 0 1 0 0 18c1.2 0 2-.9 2-2 0-1.6-1.3-2-1.3-3.3 0-1 .8-1.7 1.8-1.7H16a5 5 0 0 0 5-5c0-3.3-4-6-9-6Z"/>
+                    <circle cx="7.5" cy="10.5" r="1"/><circle cx="12" cy="7.5" r="1"/><circle cx="16.5" cy="10" r="1"/>
+                </svg>
+            </span>
+            <span class="brand-text">
+                <strong>Pinturinha</strong>
+                <span>Mágica</span>
+            </span>
+        </a>
+
+        <button class="nav-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="site-nav">
+            <span></span><span></span><span></span>
+        </button>
+
+        <nav class="site-nav" id="site-nav" aria-label="Navegação principal">
+            <% nav.forEach(item => { %>
+                <a href="<%= item.href %>" class="<%= currentPath === item.href ? 'is-active' : '' %>"><%= item.label %></a>
+            <% }) %>
+            <a href="/orcamento" class="btn btn-primary btn-sm nav-cta">Agendar festa</a>
+        </nav>
+    </div>
+</header>

@@ -1,0 +1,25 @@
+# Dependências
+node_modules/
+
+# Git e backups locais
+.git/
+_backup/
+
+# Segredos
+.env
+.env.local
+.env.*.local
+
+# Dados de produção (restaurar pelo gerenciador de arquivos/backup)
+database/*.db
+database/*.db-journal
+database/*.db-shm
+database/*.db-wal
+uploads/
+
+# Logs e arquivos de sistema
+*.log
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

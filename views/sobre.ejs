@@ -1,0 +1,105 @@
+<%- include('partials/head', { pageTitle: 'Sobre', pageDescription: 'Conheça a Pinturinha Mágica: pintura corporal artística infantil com tintas atóxicas e cuidado com a pele.' }) %>
+<body class="page-about">
+<%- include('partials/header') %>
+
+<main>
+    <section class="page-hero page-hero--about">
+        <div class="container about-hero-grid">
+            <div>
+                <span class="eyebrow"><span class="dot"></span> Sobre a Pinturinha</span>
+                <h1>Olá! Eu sou <%= site.artist_name && site.artist_name.trim() ? site.artist_name : 'a artista por trás da Pinturinha Mágica' %></h1>
+                <p>Sou apaixonada por transformar a imaginação das crianças em arte colorida — e por ver o brilho no olho quando cada uma se olha no espelho.</p>
+            </div>
+            <div class="about-hero-art" aria-hidden="true">
+                <div class="about-orb about-orb--pink"></div>
+                <div class="about-orb about-orb--teal"></div>
+                <div class="about-emoji">🎨</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container about-grid">
+            <article class="about-card reveal">
+                <span class="about-card-icon">🧴</span>
+                <h2>Cuidado com a pele</h2>
+                <p>
+                    Uso apenas tintas atóxicas, hipoalergênicas e específicas para a pele infantil.
+                    Antes de começar, converso com os responsáveis e faço um teste em uma pequena área
+                    quando a criança tem pele sensível.
+                </p>
+            </article>
+
+            <article class="about-card reveal">
+                <span class="about-card-icon">✨</span>
+                <h2>Do jeito da criança</h2>
+                <p>
+                    Cada pintura é feita no ritmo e no gosto da criança. Se ela quer ser unicórnio,
+                    tigre, borboleta ou super-herói, a gente cria junto. Nada de molde pronto:
+                    a imaginação é o ponto de partida.
+                </p>
+            </article>
+
+            <article class="about-card reveal">
+                <span class="about-card-icon">🎈</span>
+                <h2>Onde estou</h2>
+                <p>
+                    Atendo festas de aniversário em casa ou em salão, eventos escolares, festivais
+                    culturais e ações corporativas para famílias. Levo o material completo e organizo
+                    o cantinho de pintura no local.
+                </p>
+            </article>
+
+            <article class="about-card reveal">
+                <span class="about-card-icon">💛</span>
+                <h2>Respeito e privacidade</h2>
+                <p>
+                    Toda criança é tratada com carinho, paciência e respeito. Fotos só são publicadas
+                    com autorização prévia dos responsáveis, e os dados dos clientes ficam em sigilo.
+                </p>
+            </article>
+        </div>
+    </section>
+
+    <section class="section section-tinted">
+        <div class="container">
+            <div class="split-panel reveal">
+                <div class="split-panel-copy">
+                    <span class="eyebrow"><span class="dot"></span> O que levamos</span>
+                    <h2>Você não precisa se preocupar com nada</h2>
+                    <p>Chego com tudo o que é necessário para a pintura e organizo o espaço para que a atividade flua bem.</p>
+                    <ul class="check-list">
+                        <li>Tintas atóxicas e pincéis higienizados</li>
+                        <li>Espelhos, lencinhos e água para limpeza</li>
+                        <li>Catálogo de referências para escolher</li>
+                        <li>Organização por tempo e quantidade de crianças</li>
+                    </ul>
+                </div>
+                <div class="split-panel-card">
+                    <span class="quote-mark">“</span>
+                    <p>A melhor parte é ver a criança escolher o personagem, acompanhar a pintura e sair correndo para mostrar para os amigos.</p>
+                    <span class="quote-sign">Pinturinha Mágica</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-band">
+        <div class="container cta-band-inner">
+            <div>
+                <h2>Vamos colorir a próxima festa?</h2>
+                <p>Me conta a data e o que você imaginou. Respondo com todo o carinho.</p>
+            </div>
+            <div class="cta-band-actions">
+                <a href="/orcamento" class="btn btn-white btn-lg">Pedir orçamento</a>
+                <% if (waHref) { %>
+                    <a href="<%= waHref %>?text=<%= encodeURIComponent('Olá! Quero saber mais sobre a pintura artística infantil.') %>" class="btn btn-outline-light btn-lg" target="_blank" rel="noopener">WhatsApp</a>
+                <% } %>
+            </div>
+        </div>
+    </section>
+</main>
+
+<%- include('partials/footer') %>
+</body>
+</html>

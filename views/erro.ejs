@@ -1,0 +1,19 @@
+<%- include('partials/head', { pageTitle: statusCode === 404 ? 'Página não encontrada' : 'Algo deu errado' }) %>
+<body class="page-error">
+<%- include('partials/header') %>
+
+<main class="error-main">
+    <div class="container error-box">
+        <span class="error-code"><%= statusCode || 500 %></span>
+        <h1><%= statusCode === 404 ? 'Essa página fugiu do pincel' : 'Uma cor saiu do lugar' %></h1>
+        <p><%= message || 'Tivemos um problema inesperado. Tente novamente em instantes.' %></p>
+        <div class="error-actions">
+            <a href="/" class="btn btn-primary">Voltar ao início</a>
+            <a href="/contato" class="btn btn-ghost">Falar com a gente</a>
+        </div>
+    </div>
+</main>
+
+<%- include('partials/footer') %>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<%- include('partials/head', { pageTitle: 'Pintura corporal artística infantil' }) %>
+<body class="page-home">
+<%- include('partials/header') %>
+
+<main>
+    <section class="hero">
+        <div class="hero-blob hero-blob--pink" aria-hidden="true"></div>
+        <div class="hero-blob hero-blob--teal" aria-hidden="true"></div>
+
+        <div class="container hero-grid">
+            <div class="hero-copy reveal">
+                <span class="eyebrow"><span class="dot"></span> Pintura corporal infantil</span>
+                <h1>Transformando <span class="text-gradient">sorrisos</span> em cores</h1>
+                <p class="hero-lead">
+                    <%= site.hero_text && site.hero_text.trim() ? site.hero_text : 'Arte na pele para festas, eventos escolares e festivais — com tintas atóxicas e um cuidado especial com a pele das crianças.' %>
+                </p>
+
+                <div class="hero-actions">
+                    <a href="/orcamento" class="btn btn-primary btn-lg">
+                        Agendar minha festa
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    </a>
+                    <% if (waHref) { %>
+                        <a href="<%= waHref %>?text=<%= encodeURIComponent('Olá! Gostaria de saber mais sobre a pintura artística infantil.') %>" class="btn btn-ghost btn-lg" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.3-1.4a9.86 9.86 0 0 0 4.74 1.2h.01c5.46 0 9.9-4.44 9.9-9.9 0-2.64-1.03-5.13-2.9-7A9.82 9.82 0 0 0 12.04 2Zm5.8 14.06c-.24.68-1.4 1.3-1.93 1.35-.52.05-1.02.24-3.44-.72-2.9-1.15-4.72-4.13-4.86-4.32-.14-.19-1.15-1.54-1.15-2.94 0-1.4.73-2.08 1-2.37.26-.29.58-.36.77-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.82 2 .89 2.14.07.15.12.32.02.51-.1.19-.15.31-.29.48-.14.17-.3.38-.43.51-.14.14-.29.3-.12.58.17.29.74 1.22 1.59 1.98 1.09.97 2.01 1.27 2.3 1.41.29.15.46.12.63-.07.17-.19.72-.84.91-1.13.19-.29.39-.24.65-.15.26.1 1.68.79 1.97.94.29.14.48.22.55.34.07.12.07.7-.17 1.38Z"/></svg>
+                            WhatsApp
+                        </a>
+                    <% } %>
+                </div>
+
+                <ul class="hero-trust">
+                    <li><span class="check">✓</span> Tintas atóxicas</li>
+                    <li><span class="check">✓</span> Hipoalergênico</li>
+                    <li><span class="check">✓</span> Fácil remoção</li>
+                </ul>
+            </div>
+
+            <div class="hero-visual reveal" aria-hidden="true">
+                <div class="hero-card hero-card--main">
+                    <% if (heroPhotos.length) { %>
+                        <img src="/uploads/<%= heroPhotos[0].filename %>" alt="Criança com pintura artística no rosto" loading="eager">
+                    <% } else { %>
+                        <div class="hero-placeholder">
+                            <span>🎨</span>
+                            <p>Em breve, fotos dos nossos trabalhos</p>
+                        </div>
+                    <% } %>
+                </div>
+
+                <% if (heroPhotos[1]) { %>
+                    <div class="hero-card hero-card--small hero-card--one">
+                        <img src="/uploads/<%= heroPhotos[1].filename %>" alt="" loading="lazy">
+                    </div>
+                <% } %>
+                <% if (heroPhotos[2]) { %>
+                    <div class="hero-card hero-card--small hero-card--two">
+                        <img src="/uploads/<%= heroPhotos[2].filename %>" alt="" loading="lazy">
+                    </div>
+                <% } %>
+
+                <div class="hero-badge hero-badge--top">
+                    <span class="hero-badge-icon">🌿</span>
+                    <div><strong>Seguro</strong><small>para a pele</small></div>
+                </div>
+                <div class="hero-badge hero-badge--bottom">
+                    <span class="hero-badge-icon">✨</span>
+                    <div><strong>Feito</strong><small>com carinho</small></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="values-strip">
+        <div class="container values-grid">
+            <div class="value-item">
+                <span class="value-icon">🛡️</span>
+                <div><strong>Segurança em primeiro lugar</strong><small>Tintas específicas para pele infantil</small></div>
+            </div>
+            <div class="value-item">
+                <span class="value-icon">🧼</span>
+                <div><strong>Fácil de remover</strong><small>Água e sabão resolvem</small></div>
+            </div>
+            <div class="value-item">
+                <span class="value-icon">🎈</span>
+                <div><strong>Do jeito da criança</strong><small>Do unicórnio ao super-herói</small></div>
+            </div>
+            <div class="value-item">
+                <span class="value-icon">📸</span>
+                <div><strong>Fotos com autorização</strong><small>Privacidade sempre em primeiro lugar</small></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-head reveal">
+                <span class="eyebrow"><span class="dot"></span> Onde levamos cor</span>
+                <h2>Feito para cada tipo de festa</h2>
+                <p>Do aniversário em casa ao evento da escola, a pintura entra como a atividade que todo mundo quer participar.</p>
+            </div>
+
+            <div class="services-grid">
+                <article class="service-card reveal">
+                    <span class="service-icon">🎂</span>
+                    <h3>Aniversários</h3>
+                    <p>Um cantinho de arte para os convidados se transformarem durante a festa.</p>
+                </article>
+                <article class="service-card reveal">
+                    <span class="service-icon">🏫</span>
+                    <h3>Escolas</h3>
+                    <p>Datas comemorativas, feiras e festivais com atividades que encantam as turmas.</p>
+                </article>
+                <article class="service-card reveal">
+                    <span class="service-icon">🎪</span>
+                    <h3>Festivais e feiras</h3>
+                    <p>Um ponto de pintura que vira atração e gera fila de crianças animadas.</p>
+                </article>
+                <article class="service-card reveal">
+                    <span class="service-icon">🏢</span>
+                    <h3>Eventos corporativos</h3>
+                    <p>Family day e ações com filhos dos colaboradores, com organização e horário.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-tinted">
+        <div class="container">
+            <div class="section-head section-head--row reveal">
+                <div>
+                    <span class="eyebrow"><span class="dot"></span> Galeria</span>
+                    <h2>Um pedacinho do que já pintamos</h2>
+                </div>
+                <a href="/galeria" class="link-arrow">Ver galeria completa
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </a>
+            </div>
+
+            <% if (photos.length) { %>
+                <div class="gallery-grid">
+                    <% photos.slice(0, 4).forEach((photo, index) => { %>
+                        <figure class="gallery-item reveal">
+                            <img src="/uploads/<%= photo.filename %>" alt="<%= photo.caption || 'Pintura artística infantil' %>" loading="lazy">
+                            <figcaption>
+                                <span class="tag"><%= photo.category || 'Arte' %></span>
+                                <p><%= photo.caption || 'Pintura artística' %></p>
+                            </figcaption>
+                        </figure>
+                    <% }) %>
+                </div>
+            <% } else { %>
+                <div class="empty-state reveal">
+                    <span>🎨</span>
+                    <h3>Novas cores chegando</h3>
+                    <p>Estamos preparando a galeria. Enquanto isso, fale com a gente para ver mais trabalhos.</p>
+                    <% if (waHref) { %><a class="btn btn-primary" href="<%= waHref %>" target="_blank" rel="noopener">Ver no WhatsApp</a><% } %>
+                </div>
+            <% } %>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-head reveal">
+                <span class="eyebrow"><span class="dot"></span> Simples assim</span>
+                <h2>Como funciona</h2>
+            </div>
+
+            <ol class="steps">
+                <li class="step reveal">
+                    <span class="step-number">1</span>
+                    <h3>Conte sobre a festa</h3>
+                    <p>Você envia data, local e quantidade de crianças pelo formulário de orçamento.</p>
+                </li>
+                <li class="step reveal">
+                    <span class="step-number">2</span>
+                    <h3>Confirme a data</h3>
+                    <p>Respondemos pelo WhatsApp com valores e detalhes. A data fica reservada após a confirmação.</p>
+                </li>
+                <li class="step reveal">
+                    <span class="step-number">3</span>
+                    <h3>Só curta a festa</h3>
+                    <p>Chegamos com todo o material, organizamos o cantinho de pintura e cuidamos de cada detalhe.</p>
+                </li>
+            </ol>
+        </div>
+    </section>
+
+    <section class="cta-band">
+        <div class="container cta-band-inner reveal">
+            <div>
+                <span class="eyebrow eyebrow--light"><span class="dot"></span> Vamos combinar?</span>
+                <h2>Sua festa merece mais cor</h2>
+                <p>Conte a data e o tipo de evento. Respondemos com carinho e agilidade.</p>
+            </div>
+            <div class="cta-band-actions">
+                <a href="/orcamento" class="btn btn-white btn-lg">Pedir orçamento</a>
+                <% if (waHref) { %>
+                    <a href="<%= waHref %>?text=<%= encodeURIComponent('Olá! Quero saber mais sobre a pintura artística infantil.') %>" class="btn btn-outline-light btn-lg" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+                <% } %>
+            </div>
+        </div>
+    </section>
+</main>
+
+<%- include('partials/footer') %>
+</body>
+</html>

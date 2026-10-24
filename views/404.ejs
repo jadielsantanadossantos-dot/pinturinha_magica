@@ -1,0 +1,19 @@
+<%- include('partials/head', { pageTitle: 'Página não encontrada' }) %>
+<body class="page-error">
+<%- include('partials/header') %>
+
+<main class="error-main">
+    <div class="container error-box">
+        <span class="error-code">404</span>
+        <h1>Essa página fugiu do pincel</h1>
+        <p>O endereço que você tentou acessar não existe ou foi movido.</p>
+        <div class="error-actions">
+            <a href="/" class="btn btn-primary">Voltar ao início</a>
+            <a href="/galeria" class="btn btn-ghost">Ver a galeria</a>
+        </div>
+    </div>
+</main>
+
+<%- include('partials/footer') %>
+</body>
+</html>

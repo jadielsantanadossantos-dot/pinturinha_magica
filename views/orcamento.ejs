@@ -1,0 +1,208 @@
+<%- include('partials/head', { pageTitle: 'Orçamento', pageDescription: 'Peça um orçamento para pintura corporal artística infantil. Informe a data, o local e a quantidade de crianças.' }) %>
+<body class="page-quote">
+<%- include('partials/header') %>
+
+<main>
+    <section class="page-hero">
+        <div class="container">
+            <span class="eyebrow"><span class="dot"></span> Orçamento sem compromisso</span>
+            <h1>Vamos planejar sua festa?</h1>
+            <p>Preencha os dados do evento. A data fica reservada provisoriamente enquanto confirmamos os detalhes com você.</p>
+        </div>
+    </section>
+
+    <section class="section section--tight">
+        <div class="container quote-grid">
+            <div class="quote-main">
+                <% if (message) { %>
+                    <div class="alert alert--success" role="status">
+                        <span>🎉</span>
+                        <div>
+                            <strong>Pedido recebido!</strong>
+                            <p><%= message %></p>
+                        </div>
+                    </div>
+                <% } %>
+
+                <% if (errors && errors.length) { %>
+                    <div class="alert alert--error" role="alert">
+                        <span>⚠️</span>
+                        <div>
+                            <strong>Confira os campos abaixo:</strong>
+                            <ul>
+                                <% errors.forEach(error => { %><li><%= error %></li><% }) %>
+                            </ul>
+                        </div>
+                    </div>
+                <% } %>
+
+                <form action="/orcamento" method="POST" class="form form-card" id="quote-form">
+                    <fieldset class="form-section">
+                        <legend><span>1</span> Sobre o evento</legend>
+
+                        <div class="form-row">
+                            <div class="field">
+                                <label for="parent_name">Nome do responsável</label>
+                                <input type="text" id="parent_name" name="parent_name" value="<%= form.parent_name || '' %>" placeholder="Nome completo" required maxlength="120">
+                            </div>
+                            <div class="field">
+                                <label for="contact">WhatsApp / telefone</label>
+                                <input type="tel" id="contact" name="contact" value="<%= form.contact || '' %>" placeholder="(83) 99999-9999" required maxlength="30">
+                            </div>
+                        </div>
+
+                        <div class="form-row form-row--3">
+                            <div class="field">
+                                <label for="event_type">Tipo de evento</label>
+                                <select id="event_type" name="event_type">
+                                    <% ['Aniversário', 'Festa Escolar', 'Evento Corporativo', 'Festival', 'Outro'].forEach(type => { %>
+                                        <option value="<%= type %>" <%= form.event_type === type ? 'selected' : '' %>><%= type %></option>
+                                    <% }) %>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label for="event_date">Data do evento</label>
+                                <input type="date" id="event_date" name="event_date" value="<%= form.event_date || '' %>" min="<%= new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 10) %>" required>
+                            </div>
+                            <div class="field">
+                                <label for="event_time">Horário previsto</label>
+                                <input type="time" id="event_time" name="event_time" value="<%= form.event_time || '' %>">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label for="estimated_children">Quantidade estimada de crianças</label>
+                            <input type="number" id="estimated_children" name="estimated_children" value="<%= form.estimated_children || '' %>" min="1" max="500" placeholder="Ex: 15">
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-section">
+                        <legend><span>2</span> Local do evento</legend>
+
+                        <div class="form-row form-row--cep">
+                            <div class="field">
+                                <label for="cep">CEP</label>
+                                <input type="text" id="cep" name="cep" placeholder="00000-000" inputmode="numeric" maxlength="9" autocomplete="postal-code">
+                                <small class="field-hint" id="cep-hint">Preenchemos o endereço automaticamente.</small>
+                            </div>
+                            <div class="field">
+                                <label for="address">Endereço</label>
+                                <input type="text" id="address" name="address" value="<%= form.address || '' %>" placeholder="Rua, bairro, cidade" required maxlength="200">
+                            </div>
+                        </div>
+
+                        <div class="form-row form-row--3">
+                            <div class="field">
+                                <label for="number">Número</label>
+                                <input type="text" id="number" name="number" value="<%= form.number || '' %>" placeholder="123" required maxlength="20">
+                            </div>
+                            <div class="field">
+                                <label for="complement">Complemento</label>
+                                <input type="text" id="complement" name="complement" value="<%= form.complement || '' %>" placeholder="Apto, bloco..." maxlength="80">
+                            </div>
+                            <div class="field">
+                                <label for="reference">Ponto de referência</label>
+                                <input type="text" id="reference" name="reference" value="<%= form.reference || '' %>" placeholder="Próximo a..." maxlength="120">
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-section">
+                        <legend><span>3</span> Detalhes</legend>
+
+                        <div class="field">
+                            <label for="observations">Observações adicionais</label>
+                            <textarea id="observations" name="observations" rows="4" placeholder="Personagens preferidos, restrições, espaço disponível..."><%= form.observations || '' %></textarea>
+                        </div>
+
+                        <label class="check-field">
+                            <input type="checkbox" required>
+                            <span>Confirmo que as informações estão corretas e autorizo o contato pelo WhatsApp.</span>
+                        </label>
+                    </fieldset>
+
+                    <button type="submit" class="btn btn-primary btn-block btn-lg">Enviar pedido de orçamento</button>
+                    <p class="form-hint">Sem compromisso. A reserva só é garantida após a confirmação.</p>
+                </form>
+            </div>
+
+            <aside class="quote-side">
+                <div class="side-card">
+                    <h3>Datas já reservadas</h3>
+                    <% if (schedule && schedule.length) { %>
+                        <div class="date-chips">
+                            <% schedule.forEach(item => { %>
+                                <span class="date-chip" title="<%= scheduleStatus[item.status] || item.status %>"><%= formatDate(item.date) %></span>
+                            <% }) %>
+                        </div>
+                        <p class="side-note">Essas datas não estão disponíveis. Se precisar de uma delas, fale com a gente — às vezes abre vaga.</p>
+                    <% } else { %>
+                        <p class="side-note">Nenhuma data bloqueada no momento. Consulte a disponibilidade pelo formulário. ✨</p>
+                    <% } %>
+                </div>
+
+                <div class="side-card side-card--accent">
+                    <h3>O que acontece depois</h3>
+                    <ol class="mini-steps">
+                        <li><span>1</span> Recebemos seu pedido</li>
+                        <li><span>2</span> Confirmamos a data e o valor pelo WhatsApp</li>
+                        <li><span>3</span> Combinamos os detalhes da pintura</li>
+                    </ol>
+                </div>
+
+                <div class="side-card side-card--quiet">
+                    <h3>Prefere falar direto?</h3>
+                    <% if (waHref) { %>
+                        <a href="<%= waHref %>?text=<%= encodeURIComponent('Olá! Quero um orçamento para pintura artística infantil.') %>" class="btn btn-whatsapp btn-block" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+                    <% } %>
+                    <% if (waDisplay) { %><p class="side-note"><%= waDisplay %></p><% } %>
+                </div>
+            </aside>
+        </div>
+    </section>
+</main>
+
+<script>
+    (function () {
+        var cep = document.getElementById('cep');
+        var hint = document.getElementById('cep-hint');
+        var address = document.getElementById('address');
+        if (!cep || !address) return;
+
+        function digits(value) { return value.replace(/\D/g, ''); }
+
+        cep.addEventListener('input', function () {
+            var value = digits(cep.value).slice(0, 8);
+            cep.value = value.length > 5 ? value.slice(0, 5) + '-' + value.slice(5) : value;
+        });
+
+        cep.addEventListener('blur', async function () {
+            var value = digits(cep.value);
+            if (value.length !== 8) return;
+
+            hint.textContent = 'Buscando endereço...';
+            hint.classList.add('is-loading');
+
+            try {
+                var response = await fetch('https://viacep.com.br/ws/' + value + '/json/');
+                var data = await response.json();
+
+                if (data.erro) {
+                    hint.textContent = 'CEP não encontrado. Preencha o endereço manualmente.';
+                } else {
+                    address.value = [data.logradouro, data.bairro, data.localidade + '/' + data.uf]
+                        .filter(Boolean).join(', ');
+                    hint.textContent = 'Endereço preenchido automaticamente.';
+                }
+            } catch (error) {
+                hint.textContent = 'Não foi possível buscar o CEP. Preencha manualmente.';
+            } finally {
+                hint.classList.remove('is-loading');
+            }
+        });
+    })();
+</script>
+
+<%- include('partials/footer') %>
+</body>
+</html>

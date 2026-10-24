@@ -1,0 +1,79 @@
+<%- include('partials/head', { pageTitle: 'Galeria', pageDescription: 'Fotos de pintura corporal artística infantil: aniversários, escolas, festivais e eventos.' }) %>
+<body class="page-gallery">
+<%- include('partials/header') %>
+
+<main>
+    <section class="page-hero">
+        <div class="container">
+            <span class="eyebrow"><span class="dot"></span> Nossa galeria</span>
+            <h1>Arte que vira memória</h1>
+            <p>Uma seleção de personagens, cores e sorrisos. Todas as fotos são publicadas com autorização dos responsáveis.</p>
+        </div>
+    </section>
+
+    <section class="section section--tight">
+        <div class="container">
+            <div class="filter-row" role="group" aria-label="Filtrar por categoria">
+                <a href="/galeria" class="filter-pill <%= !selectedCategory ? 'is-active' : '' %>">Todas</a>
+                <% categories.forEach(category => { %>
+                    <a href="/galeria?category=<%= encodeURIComponent(category) %>" class="filter-pill <%= selectedCategory === category ? 'is-active' : '' %>"><%= category %></a>
+                <% }) %>
+            </div>
+
+            <% if (photos.length) { %>
+                <div class="gallery-grid gallery-grid--wide">
+                    <% photos.forEach(photo => { %>
+                        <button type="button" class="gallery-card reveal" data-lightbox data-full="/uploads/<%= photo.filename %>" data-caption="<%= photo.caption || 'Pintura artística' %>" data-category="<%= photo.category || 'Arte' %>">
+                            <img src="/uploads/<%= photo.filename %>" alt="<%= photo.caption || 'Pintura artística infantil' %>" loading="lazy">
+                            <span class="gallery-card-overlay">
+                                <span class="tag"><%= photo.category || 'Arte' %></span>
+                                <span class="gallery-card-caption"><%= photo.caption || 'Pintura artística' %></span>
+                            </span>
+                        </button>
+                    <% }) %>
+                </div>
+            <% } else { %>
+                <div class="empty-state">
+                    <span>🖌️</span>
+                    <h3>Nenhuma foto por aqui ainda</h3>
+                    <p><%= selectedCategory ? 'Ainda não temos trabalhos nessa categoria.' : 'Estamos organizando a galeria. Volte em breve!' %></p>
+                    <a href="/galeria" class="btn btn-primary">Ver todas as fotos</a>
+                </div>
+            <% } %>
+
+            <p class="privacy-note">🔒 Respeitamos a privacidade das crianças: nenhuma foto é publicada sem autorização prévia dos responsáveis.</p>
+        </div>
+    </section>
+
+    <section class="cta-band cta-band--soft">
+        <div class="container cta-band-inner">
+            <div>
+                <h2>Quer ver mais trabalhos?</h2>
+                <p>Chame no WhatsApp que enviamos fotos e ideias para a sua festa.</p>
+            </div>
+            <div class="cta-band-actions">
+                <% if (waHref) { %>
+                    <a href="<%= waHref %>?text=<%= encodeURIComponent('Olá! Queria ver mais fotos dos trabalhos de pintura artística.') %>" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+                <% } %>
+                <a href="/orcamento" class="btn btn-ghost btn-lg">Pedir orçamento</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<div class="lightbox" id="lightbox" hidden>
+    <div class="lightbox-backdrop" data-lightbox-close></div>
+    <div class="lightbox-body" role="dialog" aria-modal="true" aria-label="Foto ampliada">
+        <button class="lightbox-close" type="button" data-lightbox-close aria-label="Fechar">✕</button>
+        <button class="lightbox-nav lightbox-prev" type="button" data-lightbox-prev aria-label="Foto anterior">‹</button>
+        <figure>
+            <img src="" alt="" id="lightbox-image">
+            <figcaption><span class="tag" id="lightbox-category"></span> <span id="lightbox-caption"></span></figcaption>
+        </figure>
+        <button class="lightbox-nav lightbox-next" type="button" data-lightbox-next aria-label="Próxima foto">›</button>
+    </div>
+</div>
+
+<%- include('partials/footer') %>
+</body>
+</html>

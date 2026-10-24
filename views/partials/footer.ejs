@@ -1,0 +1,56 @@
+<footer class="site-footer">
+    <div class="container footer-grid">
+        <div class="footer-brand">
+            <a class="brand brand-light" href="/">
+                <span class="brand-mark" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3a9 9 0 1 0 0 18c1.2 0 2-.9 2-2 0-1.6-1.3-2-1.3-3.3 0-1 .8-1.7 1.8-1.7H16a5 5 0 0 0 5-5c0-3.3-4-6-9-6Z"/>
+                        <circle cx="7.5" cy="10.5" r="1"/><circle cx="12" cy="7.5" r="1"/><circle cx="16.5" cy="10" r="1"/>
+                    </svg>
+                </span>
+                <span class="brand-text"><strong>Pinturinha</strong><span>Mágica</span></span>
+            </a>
+            <p>Pintura corporal artística infantil com tintas atóxicas, cuidado e muita imaginação.</p>
+            <% if (site.instagram) { %>
+                <a class="footer-social" href="https://instagram.com/<%= site.instagram %>" target="_blank" rel="noopener">
+                    @<%= site.instagram %>
+                </a>
+            <% } %>
+        </div>
+
+        <div class="footer-col">
+            <h4>Navegue</h4>
+            <a href="/">Início</a>
+            <a href="/sobre">Sobre</a>
+            <a href="/galeria">Galeria</a>
+            <a href="/orcamento">Orçamento</a>
+            <a href="/contato">Contato</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>Fale com a gente</h4>
+            <% if (waDisplay) { %>
+                <a href="<%= waHref %>" target="_blank" rel="noopener"><%= waDisplay %></a>
+            <% } %>
+            <% if (site.email) { %>
+                <a href="mailto:<%= site.email %>"><%= site.email %></a>
+            <% } %>
+            <span class="footer-muted">Atendemos festas, escolas e eventos.</span>
+        </div>
+
+        <div class="footer-col footer-cta">
+            <h4>Vamos colorir sua festa?</h4>
+            <a href="/orcamento" class="btn btn-primary btn-sm">Pedir orçamento</a>
+        </div>
+    </div>
+
+    <div class="container footer-bottom">
+        <p>&copy; <%= year %> Pinturinha Mágica. Todos os direitos reservados.</p>
+        <div class="footer-bottom-links">
+            <span>Fotos publicadas com autorização dos responsáveis.</span>
+            <a href="/admin/login">Área da artista</a>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/main.js" defer></script>

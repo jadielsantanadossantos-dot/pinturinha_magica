@@ -1,0 +1,7 @@
+DISPLAY_NAME=Pinturinha Magica
+DESCRIPTION=Site e painel administrativo da Pinturinha Magica
+LANGUAGE=node
+MEMORY=512
+VERSION=recommended
+SUBDOMAIN=pinturinhamagica
+CUSTOM_COMMAND=NODE_ENV=production PORT=80 npm start
